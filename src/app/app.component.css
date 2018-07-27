@@ -1,15 +1,15 @@
 
 .siema img {
-    width: 800px;
-    height: 500px;
+  width: 800px;
+  height: 500px;
 }
 
 @media all and (display-mode: standalone) {
-    body {
-      background-color: yellow;
-    }
+  body {
+    background-color: yellow;
   }
+}
 
-/*#addToHome {*/
-  /*display: none;*/
-/*}*/
+#addToHome {
+  display: none;
+}
