@@ -27,6 +27,7 @@
     "express": "^4.16.3",
     "path": "^0.12.7",
     "rxjs": "^6.0.0",
+    "siema": "^1.5.1",
     "zone.js": "^0.8.26"
   },
   "devDependencies": {
