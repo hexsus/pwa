@@ -9,3 +9,7 @@
       background-color: yellow;
     }
   }
+
+#addToHome {
+  display: none;
+}
