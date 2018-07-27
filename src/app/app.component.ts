@@ -8,7 +8,7 @@ import Siema from 'siema';
 })
 export class AppComponent implements OnInit {
   ngOnInit() {
-    new Siema();
+    const siema = new Siema();
     let deferredPrompt;
     const btnAdd = document.getElementById('addToHome');
     window.addEventListener('beforeinstallprompt', (e) => {
