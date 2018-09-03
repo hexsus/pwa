@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import Siema from 'siema';
 
 @Component({
   selector: 'app-root',
@@ -7,33 +6,21 @@ import Siema from 'siema';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  ngOnInit() {
-    const siema = new Siema();
-    let deferredPrompt;
-    const btnAdd = document.getElementById('addToHome');
-    window.addEventListener('beforeinstallprompt', (e) => {
-      // Prevent Chrome 67 and earlier from automatically showing the prompt
-      e.preventDefault();
-      // Stash the event so it can be triggered later.
-      deferredPrompt = e;
-      btnAdd.style.display = 'block';
-    });
+  public deferredPrompt = null;
 
-    btnAdd.addEventListener('click', (e) => {
-      // hide our user interface that shows our A2HS button
-      btnAdd.style.display = 'none';
-      // Show the prompt
-      deferredPrompt.prompt();
-      // Wait for the user to respond to the prompt
-      deferredPrompt.userChoice
-        .then((choiceResult) => {
-          if (choiceResult.outcome === 'accepted') {
-            console.log('User accepted the A2HS prompt');
-          } else {
-            console.log('User dismissed the A2HS prompt');
-          }
-          deferredPrompt = null;
-        });
+  ngOnInit() {
+    this.initAppToScreen();
+  }
+
+  public initAppToScreen() {
+    window.addEventListener('beforeinstallprompt', (e) => {
+      // e.preventDefault();
+      this.deferredPrompt = e;
     });
+  }
+
+  public addToHomeScreen(): void {
+    this.deferredPrompt.prompt();
+    this.deferredPrompt.userChoice.then(() => (this.deferredPrompt = null));
   }
 }
