@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SwUpdate } from '@angular/service-worker';
 
 @Component({
   selector: 'app-root',
@@ -8,30 +9,26 @@ import { Component, OnInit } from '@angular/core';
 export class AppComponent implements OnInit {
   public deferredPrompt = null;
 
+  constructor(private swUpdate: SwUpdate) {
+  }
+
   ngOnInit() {
     this.initAppToScreen();
   }
 
   public initAppToScreen() {
-    window.addEventListener('beforeinstallprompt', (event) => {
-      // Prevent Chrome <= 67 from automatically showing the prompt
-      // event.preventDefault();
-      // Stash the event so it can be triggered later.
-      this.deferredPrompt = event;
-      // Update the install UI to notify the user app can be installed
-    });
+    if (this.swUpdate.isEnabled) {
+      this.swUpdate.available.subscribe(() => {
+        if (confirm('New version available. Load new Version?')) {
+          window.location.reload();
+        }
+      });
+    }
+    window.addEventListener('beforeinstallprompt', (event) => this.deferredPrompt = event);
   }
 
   public addToHomeScreen(): void {
     this.deferredPrompt.prompt();
-    this.deferredPrompt.userChoice.then((choice) => {
-      if (choice.outcome === 'accepted') {
-        alert('User accepted the A2HS prompt');
-      } else {
-        alert('User dismissed the A2HS prompt');
-      }
-      // Clear the saved prompt since it can't be used again
-      this.deferredPrompt = null;
-    });
+    this.deferredPrompt.userChoice.then(() => this.deferredPrompt = null);
   }
 }
