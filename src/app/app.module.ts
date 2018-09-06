@@ -7,6 +7,7 @@ import { environment } from '../environments/environment';
 import { TimerComponent } from './timer/timer.component';
 import { MinuteToSecondsPipe } from './minute-to-seconds.pipe';
 import { HeaderComponent } from './header/header.component';
+import { CoreModule } from './core/core.module';
 
 @NgModule({
   declarations: [
@@ -17,9 +18,11 @@ import { HeaderComponent } from './header/header.component';
   ],
   imports: [
     BrowserModule,
+    CoreModule,
     ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
