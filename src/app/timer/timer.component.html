@@ -1,0 +1,11 @@
+<div class="container">
+  <div class="timer">
+    {{time | minuteToSeconds}}
+  </div>
+  <div class="actions">
+    <a *ngIf="!interval" (click)="start()" class="controls btn btn-2">Start</a>
+    <a *ngIf="interval" (click)="pause()" class="btn btn-2">Pause</a>
+    <a (click)="stop()" class="controls btn btn-2">Stop</a>
+  </div>
+  <p class="message" *ngIf="interval">Message: {{showMessage()}}</p>
+</div>

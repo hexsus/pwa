@@ -4,10 +4,14 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { TimerComponent } from './timer/timer.component';
+import { MinuteToSecondsPipe } from './minute-to-seconds.pipe';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    TimerComponent,
+    MinuteToSecondsPipe
   ],
   imports: [
     BrowserModule,
