@@ -6,12 +6,14 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { TimerComponent } from './timer/timer.component';
 import { MinuteToSecondsPipe } from './minute-to-seconds.pipe';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TimerComponent,
-    MinuteToSecondsPipe
+    MinuteToSecondsPipe,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
