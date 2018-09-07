@@ -10,6 +10,7 @@ import { HeaderComponent } from './header/header.component';
 import { CoreModule } from './core/core.module';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { TimerSettingsComponent } from './timer-settings/timer-settings.component';
 
 const config = {
   apiKey: 'AIzaSyC-sLDvcyvjR5h4N4qMCTQ-qGHrXbRDjCY',
@@ -25,7 +26,8 @@ const config = {
     AppComponent,
     TimerComponent,
     MinuteToSecondsPipe,
-    HeaderComponent
+    HeaderComponent,
+    TimerSettingsComponent
   ],
   imports: [
     BrowserModule,
